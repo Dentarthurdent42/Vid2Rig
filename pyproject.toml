@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vid2rig"
+version = "0.1.0"
+description = "Infer a skeleton rig (joints, bones, skinning weights) from the motion of an object in a video"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.22", "scipy>=1.8"]
+
+[project.optional-dependencies]
+video = [
+    "torch>=2.1",
+    "torchvision",
+    "opencv-python",
+    "transformers>=4.45",
+    "pillow",
+    "sam2",
+]
+dev = ["pytest"]
+
+[project.scripts]
+vid2rig = "vid2rig.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["vid2rig*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
